@@ -110,7 +110,7 @@ public class BasicTypeUtils {
     public static byte[] doubleToByte(double num) {
         byte[] b = new byte[8];
         long l = Double.doubleToLongBits(num);
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < b.length; i++) {
             b[i] = new Long(l).byteValue();
             l = l >> 8;
         }
@@ -129,13 +129,13 @@ public class BasicTypeUtils {
         m |= ((long) b[2] << 16);
         m &= 0xffffff;
         m |= ((long) b[3] << 24);
-        m &= 0xffffffffl;
+        m &= 0xffffffffL;
         m |= ((long) b[4] << 32);
-        m &= 0xffffffffffl;
+        m &= 0xffffffffffL;
         m |= ((long) b[5] << 40);
-        m &= 0xffffffffffffl;
+        m &= 0xffffffffffffL;
         m |= ((long) b[6] << 48);
-        m &= 0xffffffffffffffl;
+        m &= 0xffffffffffffffL;
         m |= ((long) b[7] << 56);
         return Double.longBitsToDouble(m);
     }
