@@ -1,4 +1,4 @@
-#基本常识#
+# 基本常识 #
 byte-字节：字节是计算机存储容量的基本单位，一个字节由8位二进制数组成  
 在计算机内部，一个字节可以表示一个数据，也可以表示一个英文字母，两个字节可以表示一个汉字。
 1Byte=8bit  (1B＝8bit) 
@@ -13,19 +13,19 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
 - **char** 	\u0000~\uFFFF
 - **boolean**  	false、true
 
-#八大类型详解#
+# 八大类型详解 #
 
 ## 从小到大的转换(隐式转换) ##
 图中从左向右的转换都是隐式转换，无需再代码中进行强制转换
 ![](https://i.imgur.com/Z2mwvv3.png)
-## 各个类型与byte数组的相互转换##
+## 各个类型与byte数组的相互转换 ##
 **byte**: 字节类型 占8位二进制 00000000<br>
 **char**: 字符类型 占2个字节 16位二进制 byte[0] byte[1]<br>
 **int** : 整数类型 占4个字节 32位二进制 byte[0] byte[1] byte[2] byte[3]<br>
 **long**: 长整数类型 占8个字节 64位二进制 byte[0] byte[1] byte[2] byte[3] byte[4] byte[5] byte[6] byte[7]<br>
 **float**: 浮点数(小数) 占4个字节 32位二进制 byte[0] byte[1] byte[2] byte[3]<br>
 **double**: 双精度浮点数(小数) 占8个字节 64位二进制 byte[0] byte[1] byte[2] byte[3] byte[4] byte[5] byte[6] byte[7]<br>
-###int转byte[ ]###
+### int转byte[ ] ###
 针对声明变量 int i = 3,j = 8;int占4个字节，i = 3 在Java二进制表示：<br/>                 00000000 00000000 00000000 00000011   <br/>j = 8 在Java二进制表示：<br/>00000000 00000000 00000000 00001000<br/>下面进行运算：<br/>1、按位与：每一位进行按位与运算，规则是 1&1 = 1；1&0 = 0；0&1 = 0；0&0 = 0；所以i & j = 0 <br/>2、右位移或者左位移i>>2 = 0向右位移两位，右边使用0补位，变成：<br/>00000000 00000000 00000000 00000000<br/>i<<2 = 12向左位移两位，左边使用0补位，变成:<br/>00000000 00000000 00000000 00001100
 
     public static  byte[] int_byte(int id){
@@ -37,7 +37,7 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
          arr[3]=(byte)((id>>3*8)&0xff);
          return arr;
      }
-###byte[ ]转int###
+### byte[ ]转int ###
     public static int byte_int(byte[] arr){
         
         int i0=(int)((arr[0]&0xff)<<0*8);
@@ -47,12 +47,12 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
         return i0+i1+i2+i3;
      }
 
-###short、long、char与int类似###
+### short、long、char与int类似 ###
 **注意**byte转long时一定要强转 不然会造成最高32位精度丢失
 
     long l = ((long) b[0] << 56) & 0xFF00000000000000L;
 
-###double与float###
+### double与float ###
     /**
 	 * 将一个双精度浮点数转换位字节数组（8个字节），b[0]存储高位字符，大端
 	 * 
@@ -92,7 +92,7 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
 	public static float bytesToFloat(byte[] b) {
 		return Float.intBitsToFloat(bytesToInt(b));
 	}
-###boolean、byte[ ]互转###
+### boolean、byte[ ]互转 ###
     /**
     * 将布尔值转换为字节数组
     * 
@@ -115,7 +115,7 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
         return bytes[index] == 1;
     }
 
-##java中byte转换int时为何与0xff进行与运算##
+## java中byte转换int时为何与0xff进行与运算 ##
 在剖析该问题前请看如下代码
 
      public static String bytes2HexString(byte[] b) {
@@ -198,7 +198,7 @@ Integer.toHexString的参数是int，如果不进行&0xff，那么当一个byte�
 
 byte为负数，高3字节就填充1，整数就补0，所以，如果byte是正数那么是否进行&0xff结果都一样；如果是负数就一定需要&0xff。
 
-###补充###
+### 补充 ###
 > java 高低位字节，以及转换
 
 
@@ -283,7 +283,7 @@ int 的高低位：
     value= (a<< 8) | (b & 0xFF);
 
 
-##Java实现uint8_t/uint16_t/uint32_t等##
+## Java实现uint8_t/uint16_t/uint32_t等 ##
 在Java中，整数可以用byte,short,int和long等类型来表示，并不支持unsigned类型。然而在很多情况下Java也需要处理无符号类型，如翻译C/C++代码，与C/C++进行通讯等，这时就需要用Java来实现uint8_t,uint16_t,uint32_t等类型。
 Java实现unsigned类型一般的思路为用更大的存储空间来保存无符号类型，以确保unsigned 最高位不会被Java整型中的符号位所混淆
 
@@ -309,13 +309,13 @@ uint64 类型数据太长 在Java里只能转换成字符串
 String 类代表字符串。Java 程序中的所有字符串字面值（如 "abc" ）都作为此类的实例实现。<br/> 
 字符串是常量；它们的值在创建之后不能更改。<br/>字符串缓冲区支持可变的字符串。因为 String 对象是不可变的，所以可以共享。<br/>
 String底层使用一个字符数组来维护的。<br/>成员变量可以知道String类的值是final类型的，不能被改变的，所以只要一个值改变就会生成一个新的String类型对象，存储String数据也不一定从数组的第0个元素开始的，而是从offset所指的元素开始
-###创建字符串对象两种方式的区别###
-####直接赋值方式创建对象####
+### 创建字符串对象两种方式的区别 ###
+#### 直接赋值方式创建对象 ####
 直接赋值方式创建对象是在方法区的常量池
 
     String str="hello";//直接赋值的方式
 
-####通过构造方法创建字符串对象####
+#### 过构造方法创建字符串对象 ####
 通过构造方法创建字符串对象是在堆内存
 
     String str=new String("hello");//实例化的方式
@@ -334,7 +334,7 @@ String底层使用一个字符数组来维护的。<br/>成员变量可以知道
 　
 　　　　　　}`此时equals会处理null值，可以避免空指向异常
 　　　
-###byte[ ] 和 String互相转换###
+### byte[ ] 和 String互相转换 ###
     public static void main(String[] args) 
     {
         //Original String
@@ -350,7 +350,7 @@ String底层使用一个字符数组来维护的。<br/>成员变量可以知道
         System.out.println("Decoded String : " + s);
     }
 
-###16进制与字符串之间的相互转换###
+### 16进制与字符串之间的相互转换 ###
 
     /**
     * 字符串转换成为16进制(无需Unicode编码)
@@ -390,7 +390,7 @@ String底层使用一个字符数组来维护的。<br/>成员变量可以知道
     return new String(bytes);
     }
 
-##**String字符串编码解码格式**##
+## **String字符串编码解码格式** ##
 String字符串编码解码格式
 
     String.getBytes()//方法是得到一个操作系统默认的编码格式的字节数组。
@@ -442,7 +442,7 @@ String字符串编码解码格式
 ----------
 2019/3/13 星期三 10:58:38 
 
-##转换工具类##
+## 转换工具类 ##
 [https://github.com/UaenaSA/JavaUtils.git](https://github.com/UaenaSA/JavaUtils.git "工具类")
 - 
 
