@@ -754,12 +754,12 @@ public class BytesUtils {
      * @param lenData 需要进行转换的字节数组
      * @return  字节数组所表示整型值的大小
      */
-    public static int bytesToIntWhereByteLengthEquals2(byte lenData[]) {
+    public static int bytesToIntWhereByteLengthEquals2(byte[] lenData) {
         if(lenData.length != 2){
             return -1;
         }
-        byte fill[] = new byte[]{0,0};
-        byte real[] = new byte[4];
+        byte[] fill = new byte[]{0, 0};
+        byte[] real = new byte[4];
         System.arraycopy(fill, 0, real, 0, 2);
         System.arraycopy(lenData, 0, real, 2, 2);
         int len = byteToInt(real);
