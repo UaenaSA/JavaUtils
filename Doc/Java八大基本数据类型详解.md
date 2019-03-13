@@ -91,6 +91,28 @@ byte-字节：字节是计算机存储容量的基本单位，一个字节由8�
 	public static float bytesToFloat(byte[] b) {
 		return Float.intBitsToFloat(bytesToInt(b));
 	}
+###boolean、byte[ ]互转###
+    /**
+    * 将布尔值转换为字节数组
+    * 
+    * @param data
+    * @return
+    */
+    public static byte[] getBytes(boolean data) {
+    bytes[0] = (byte) (data ? 1 : 0);
+    return bytes;
+    }
+
+    /**
+    * 将字节数组的第index字节转换为布尔值
+    * 
+    * @param bytes
+    * @param index
+    * @return
+    */
+    public static boolean getBoolean(byte[] bytes, int index) {
+        return bytes[index] == 1;
+    }
 
 ##java中byte转换int时为何与0xff进行与运算##
 在剖析该问题前请看如下代码
@@ -419,7 +441,7 @@ String字符串编码解码格式
 ----------
 2019/3/13 星期三 10:58:38 
 
-**转换工具类**
+##转换工具类##
 [https://github.com/UaenaSA/JavaUtils.git](https://github.com/UaenaSA/JavaUtils.git "工具类")
 - 
 
